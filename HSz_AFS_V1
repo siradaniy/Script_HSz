@@ -1,0 +1,216 @@
+--updatefix
+local version = "1.0.0"
+
+---// Loading Section \\---
+repeat  task.wait() until game:IsLoaded()
+if game.PlaceId == 6299805723 then
+    repeat task.wait() until game.Workspace:FindFirstChild("Worlds")
+    repeat task.wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainGui")
+end
+
+------------------------------
+local a = 'HSz_Anime_Fighters_Simulator' -- ชื่อโฟเดอร์
+local b = game:GetService('Players').LocalPlayer.Name .. '_AnimeFightersSimulator.json' 
+Settings = {}
+function saveSettings()
+    local HttpService = game:GetService('HttpService')
+    if not isfolder(a) then
+        makefolder(a)
+    end
+    writefile(a .. '/' .. b, HttpService:JSONEncode(Settings))
+    Settings = ReadSetting()
+    warn("Settings Saved!")
+end
+function ReadSetting()
+    local s, e = pcall(function()
+        local HttpService = game:GetService('HttpService')
+        if not isfolder(a) then
+            makefolder(a)
+        end
+        return HttpService:JSONDecode(readfile(a .. '/' .. b))
+    end)
+    if s then
+        return e
+    else
+        saveSettings()
+        return ReadSetting()
+    end
+end
+Settings = ReadSetting()
+------------------------------
+
+if game.CoreGui:FindFirstChild("FinityUI") then
+    game.CoreGui["FinityUI"]:Destroy()
+end
+
+local dir = "Anime_Warriors_2/"..game.Players.LocalPlayer.Name
+local Uilib, Player, Rayfield, CreateWindow  = loadstring(game:HttpGet("https://raw.githubusercontent.com/siradaniy/HSz/main/finitylib.lua"))()
+local exec = tostring(identifyexecutor())
+local Window = Uilib.new(true, "[HSz_AFS_v1] Anime Fighters Simulator UPD "..version.." - "..exec)
+Window.ChangeToggleKey(Enum.KeyCode.P)
+--Main
+local Home = Window:Category(" 🏠 Main")
+local AutoFarm = Home:Sector("Auto Farm")
+
+
+local l__ReplicatedStorage__1 = game:GetService("ReplicatedStorage");
+local l__Bindable__9 = l__ReplicatedStorage__1:WaitForChild("Bindable");
+
+local mobs = {"Closest Enemy"}
+local mob = nil
+local farm = false
+
+for i,v in pairs(game:GetService("Workspace").Worlds:GetDescendants()) do
+	if v.Parent.Name == "Enemies" and not table.find(mobs,v.DisplayName.Value) then
+		table.insert(mobs,v.DisplayName.Value)
+	end
+end
+
+
+
+--Secelt_Enemy
+local EnemyDropdown = AutoFarm:Cheat("Dropdown", "👾 เลือก Enemy",function(mobs)
+	Settings.SelectedEnemy = mobs
+	saveSettings()
+end, {options = mobs, default = Settings.SelectedEnemy})
+
+
+
+--Toggle_Auto_Attack
+AutoFarm:Cheat("Checkbox"," 🗡 Auto Attack ตีออโต้ [ในระยะ] ", function(bool)
+	print(bool)
+	Settings.AutoAttack = bool
+	saveSettings()
+end,{enabled = Settings.AutoAttack})
+
+game:GetService('RunService').Stepped:connect(function()
+	if Settings.AutoAttack then
+		pcall(function()
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+		end)		
+	end
+end)
+spawn(function()
+	while wait() do
+		if Settings.AutoAttack then
+			for i,v in pairs(game:GetService("Workspace").Worlds:GetDescendants()) do
+				if v:FindFirstChild("DisplayName") and v.DisplayName.Value == Settings.SelectedEnemy and v:FindFirstChild("HumanoidRootPart") then
+					pcall(function()
+						for i,v in pairs(game:GetService("Workspace").Effects:GetDescendants()) do
+							if v.Name == "Base" then
+								--v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
+							end
+						end
+							--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.HumanoidRootPart.CFrame.Position + Vector3.new(0,0,0))
+wait(.2)
+						repeat wait()
+							--game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.HumanoidRootPart.CFrame.Position + Vector3.new(0,0,0))
+							for i,k in pairs(game:GetService("Workspace").Pets:GetDescendants()) do
+								if k.Name == "Owner" and k.Value == game.Players.LocalPlayer and not k.Parent.Attacking.Value then
+									l__Bindable__9.SendPet:Fire(v, false);
+								end
+							end	
+							game:GetService("ReplicatedStorage").Remote.ClickerDamage:FireServer()
+						until v.Health.Value <= 0 or v == nil or v.HumanoidRootPart == nil or v.DisplayName.Value ~= Settings.SelectedEnemy or not Settings.AutoAttack
+						
+					end)
+				end
+			end
+		end
+	end
+end)
+
+--Toggle_Auto_Attack
+AutoFarm:Cheat("Checkbox"," 🗡 Auto Attack ตีออโต้ [TP to Monster] ", function(bool)
+	print(bool)
+	Settings.AutoAttack2 = bool
+	saveSettings()
+end,{enabled = Settings.AutoAttack2})
+
+game:GetService('RunService').Stepped:connect(function()
+	if Settings.AutoAttack2 then
+		pcall(function()
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+		end)		
+	end
+end)
+spawn(function()
+	while wait() do
+		if Settings.AutoAttack2 then
+			for i,v in pairs(game:GetService("Workspace").Worlds:GetDescendants()) do
+				if v:FindFirstChild("DisplayName") and v.DisplayName.Value == Settings.SelectedEnemy and v:FindFirstChild("HumanoidRootPart") then
+					pcall(function()
+						for i,v in pairs(game:GetService("Workspace").Effects:GetDescendants()) do
+							if v.Name == "Base" then
+								v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
+							end
+						end
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.HumanoidRootPart.CFrame.Position + Vector3.new(0,0,0))
+wait(.2)
+						repeat wait()
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.HumanoidRootPart.CFrame.Position + Vector3.new(0,0,0))
+							for i,k in pairs(game:GetService("Workspace").Pets:GetDescendants()) do
+								if k.Name == "Owner" and k.Value == game.Players.LocalPlayer and not k.Parent.Attacking.Value then
+									l__Bindable__9.SendPet:Fire(v, false);
+								end
+							end	
+							game:GetService("ReplicatedStorage").Remote.ClickerDamage:FireServer()
+						until v.Health.Value <= 0 or v == nil or v.HumanoidRootPart == nil or v.DisplayName.Value ~= Settings.SelectedEnemy or not Settings.AutoAttack2
+						
+					end)
+				end
+			end
+		end
+	end
+end)
+
+
+
+--Toggle_Auto_Click
+AutoFarm:Cheat("Checkbox"," 🖱 Auto Click คลิ๊กออโต้ ", function(bool)
+	print(bool)
+	Settings.AutoClick = bool
+	saveSettings()
+end,{enabled = Settings.AutoClick})
+
+task.spawn(function()
+	while task.wait() do
+		if Settings.AutoClick then
+			game:GetService("ReplicatedStorage").Remote.ClickerDamage:FireServer()
+		end
+	end
+end)
+
+
+
+--Toggle_Auto_Collect
+AutoFarm:Cheat("Checkbox"," 💴 Auto Collect เก็บเหรียญออโต้ ", function(bool)
+	print(bool)
+	Settings.AutoCollect = bool
+	saveSettings()
+end,{enabled = Settings.AutoCollect})
+
+task.spawn(function()
+	while task.wait() do
+		if Settings.AutoCollect then
+            for i,v in pairs(game:GetService("Workspace").Effects:GetDescendants()) do
+                if v.Name == "Base" then
+                    v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,0,0)
+				end
+                end
+            end
+        end
+    end)
+
+
+
+
+local VirtualUser = game:GetService("VirtualUser")
+
+game:GetService("Players").LocalPlayer.Idled:Connect(function()
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton2(Vector2.new())
+end)
+
+warn("HSz Hider Name Loaded สำเร็จ!!!")
+warn("HSz AFS v1 Loaded สำเร็จ!!!")
