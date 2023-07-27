@@ -212,7 +212,7 @@ end,{enabled = Settings.AutoClaimRW})
 task.spawn(function()
 	while task.wait() do
 		if Settings.AutoClaimRW then
-            for i = 0,15 do
+            for i = 0,20 do
 				local args = { [1] = i }
 				game:GetService("ReplicatedStorage").Remote.ClaimGift:FireServer(unpack(args))
 			end
