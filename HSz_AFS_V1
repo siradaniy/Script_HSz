@@ -204,13 +204,20 @@ task.spawn(function()
 
 
 
+if game.PlaceId == 8304191830 then
+		for i = 0,15 do
+	local args = { [1] = i }
+	game:GetService("ReplicatedStorage").Remote.ClaimGift:FireServer(unpack(args))
+	print("Claim Time Reward")
+	end
+end
 
 local VirtualUser = game:GetService("VirtualUser")
-
 game:GetService("Players").LocalPlayer.Idled:Connect(function()
     VirtualUser:CaptureController()
     VirtualUser:ClickButton2(Vector2.new())
 end)
+
 
 warn("HSz Hider Name Loaded สำเร็จ!!!")
 warn("HSz AFS v1 Loaded สำเร็จ!!!")
