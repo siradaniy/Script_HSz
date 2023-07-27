@@ -202,15 +202,23 @@ task.spawn(function()
         end
     end)
 
+	--Toggle_Auto_Claim_time_reward
+AutoFarm:Cheat("Checkbox"," 💴 Auto Claim Time Reward ", function(bool)
+	print(bool)
+	Settings.AutoClaimRW = bool
+	saveSettings()
+end,{enabled = Settings.AutoClaimRW})
 
-
-if game.PlaceId == 8304191830 then
-		for i = 0,15 do
-	local args = { [1] = i }
-	game:GetService("ReplicatedStorage").Remote.ClaimGift:FireServer(unpack(args))
-	print("Claim Time Reward")
-	end
-end
+task.spawn(function()
+	while task.wait() do
+		if Settings.AutoClaimRW then
+            for i = 0,15 do
+				local args = { [1] = i }
+				game:GetService("ReplicatedStorage").Remote.ClaimGift:FireServer(unpack(args))
+			end
+        end
+    end
+end)
 
 local VirtualUser = game:GetService("VirtualUser")
 game:GetService("Players").LocalPlayer.Idled:Connect(function()
