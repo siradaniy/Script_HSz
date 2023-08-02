@@ -38,10 +38,17 @@ function ReadSetting()
 end
 Settings = ReadSetting()
 ------------------------------
-
-if game.CoreGui:FindFirstChild("FinityUI") then
-    game.CoreGui["FinityUI"]:Destroy()
+if game.Players.LocalPlayer.PlayerGui:FindFirstChild("FinityUI") then
+    game.Players.LocalPlayer.PlayerGui["FinityUI"]:Destroy()
 end
+
+--[[if game.Players.LocalPlayer:FindFirstChild("FinityUI") then
+    game.Players.LocalPlayer["FinityUI"]:Destroy()
+end]]
+
+--[[if game.CoreGui:FindFirstChild("FinityUI") then
+    game.CoreGui["FinityUI"]:Destroy()
+end]]
 
 local dir = "Anime_Warriors_2/"..game.Players.LocalPlayer.Name
 local Uilib, Player, Rayfield, CreateWindow  = loadstring(game:HttpGet("https://raw.githubusercontent.com/siradaniy/HSz/main/finitylib.lua"))()
@@ -51,25 +58,45 @@ Window.ChangeToggleKey(Enum.KeyCode.P)
 --Main
 local Home = Window:Category(" 🏠 Main")
 local AutoFarm = Home:Sector("Auto Farm")
+--Dungeon
+local DUN = Window:Category(" Dungeon Config")
+local AutoDUN = DUN:Sector("Auto Farm Dungeon")
+
+
+
+---------------------------------------------------------
+---------------------------------------------------------autofarmfix
+---------------------------------------------------------
 
 
 local l__ReplicatedStorage__1 = game:GetService("ReplicatedStorage");
 local l__Bindable__9 = l__ReplicatedStorage__1:WaitForChild("Bindable");
 
-local mobs = {"Closest Enemy"}
-local mob = nil
-local farm = false
 
-for i,v in pairs(game:GetService("Workspace").Worlds:GetDescendants()) do
-	if v.Parent.Name == "Enemies" and not table.find(mobs,v.DisplayName.Value) then
-		table.insert(mobs,v.DisplayName.Value)
-	end
+--game:GetService("ReplicatedStorage").ModuleScripts.PetStats
+local DataWorld = require(game:GetService("ReplicatedStorage").ModuleScripts.PetStats)
+
+function autoload2()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/siradaniy/Script_HSz/main/HSz_AFS_V1'))()
 end
 
+AutoFarm:Cheat("Button","Relord monster ", function()
+	autoload2()
+end)
+
+--start Enemy name
+	local mobs = {"Closest Enemy"}
+	local mob = nil
+
+	for i,v in pairs(game:GetService("Workspace").Worlds:GetDescendants()) do
+		if v.Parent.Name == "Enemies" and not table.find(mobs,v.DisplayName.Value) then
+			table.insert(mobs,v.DisplayName.Value)
+		end
+	end
 
 
 --Secelt_Enemy
-local EnemyDropdown = AutoFarm:Cheat("Dropdown", "👾 เลือก Enemy",function(mobs)
+AutoFarm:Cheat("Dropdown", "👾 เลือก Enemy",function(mobs)
 	Settings.SelectedEnemy = mobs
 	saveSettings()
 end, {options = mobs, default = Settings.SelectedEnemy})
@@ -220,12 +247,44 @@ task.spawn(function()
     end
 end)
 
+-------------------------------------------------------
+--------------------Dungeon Config---------------------
+-------------------------------------------------------
+
+
+--------------------------------------------------------
+
 local VirtualUser = game:GetService("VirtualUser")
 game:GetService("Players").LocalPlayer.Idled:Connect(function()
     VirtualUser:CaptureController()
     VirtualUser:ClickButton2(Vector2.new())
 end)
 
-
 warn("HSz Hider Name Loaded สำเร็จ!!!")
 warn("HSz AFS v1 Loaded สำเร็จ!!!")
+
+------------------------------------------------------
+--[[Autoquest
+local args = {
+    [1] = workspace.Worlds.HellsParadise.HellsParadise
+}
+
+game:GetService("ReplicatedStorage").Remote.StartQuest:FireServer(unpack(args))
+
+--Auto Summon
+
+--Open
+
+local args = {
+    [1] = workspace.Worlds.HellsParadise.HellsParadiseEgg,
+    [2] = 8
+}
+
+game:GetService("ReplicatedStorage").Remote.OpenEgg:InvokeServer(unpack(args))
+
+--Multi Open
+local args = {
+    [1] = "HellsParadiseEgg"
+}
+
+game:GetService("ReplicatedStorage").Remote.AttemptMultiOpen:FireServer(unpack(args))]]
