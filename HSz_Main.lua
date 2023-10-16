@@ -1,6 +1,6 @@
 local ScriptLoad = nil
 local PlaceId = {}
-if game.PlaceId == 8304191830 then--or game.PlaceId == 8349889591 or game.PlaceId == 14229762361 then
+if game.PlaceId == 8304191830 then
     ScriptLoad = "HSz_AA"
 elseif game.PlaceId ~= 8304191830 then
     ScriptLoad = "HSz_AA"
