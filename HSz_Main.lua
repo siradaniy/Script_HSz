@@ -7,7 +7,14 @@ local PlaceId_ADF = {12135640403,15502802192,15502802094} --Anime Dungeon Fighte
 local PlaceId_SB3 = {14819493140,14819490378,15695929915,11523257493,16468939104,16582687738} --Swordburst 3
 local PlaceId_GE = {14115013144,15910166475,16367837244} --Grimoires Era
 local PlaceId_CTD = {12317373094,14457745436} --Champions TD
+local PlaceId_AF = {16474126979,16632969817,16722699358,16731548538,17186294741,17186401535,17186452177,17242022433,17256748686,17263479249,17290293441} --Anime Fantasy
 
+--Anime Fantasy
+if table.find(PlaceId_AF,game.PlaceId) then
+    ScriptLoadHSz = "HSz_AF"
+else
+	ScriptLoadHSz = "HSz_AF"
+end
 
 if table.find(PlaceId_ACS,game.PlaceId) then
     ScriptLoadHSz = "HSz_ACS"
@@ -26,6 +33,7 @@ elseif table.find(PlaceId_GE,game.PlaceId) then
 elseif table.find(PlaceId_CTD,game.PlaceId) then
 	ScriptLoadHSz = "HSz_CTD"
 end
+
 
 local hsz,err = pcall(function ()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/siradaniy/Script_HSz/main/" .. ScriptLoadHSz .. ".lua"))()
