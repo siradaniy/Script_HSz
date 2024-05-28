@@ -8,6 +8,8 @@ local PlaceId_SB3 = {14819493140,14819490378,15695929915,11523257493,16468939104
 local PlaceId_GE = {14115013144,15910166475,16367837244} --Grimoires Era
 local PlaceId_CTD = {12317373094,14457745436} --Champions TD
 local PlaceId_AF = {16474126979,16632969817,16722699358,16731548538,17186294741,17186401535,17186452177,17242022433,17256748686,17263479249,17290293441} --Anime Fantasy
+local PlaceId_ACD = {17399149936,17399170300} --Anime-Crossover-Defense
+local PlaceId_AD = {17017769292,17018663967,17633071278,17078425946,17456575820,17490500437,17513685680,17620826119} --Anime-Defenders
 
 --Anime Fantasy
 if table.find(PlaceId_AF,game.PlaceId) then
@@ -32,6 +34,10 @@ elseif table.find(PlaceId_GE,game.PlaceId) then
 	ScriptLoadHSz = "HSz_GE"
 elseif table.find(PlaceId_CTD,game.PlaceId) then
 	ScriptLoadHSz = "HSz_CTD"
+elseif table.find(PlaceId_ACD,game.PlaceId) then
+	ScriptLoadHSz = "HSz_ACD"
+elseif table.find(PlaceId_AD,game.PlaceId) then
+	ScriptLoadHSz = "HSz_AD"
 end
 
 
