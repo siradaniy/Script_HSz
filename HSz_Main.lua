@@ -11,21 +11,17 @@ local PlaceId_AF = {16474126979,16632969817,16722699358,16731548538,17186294741,
 local PlaceId_ACD = {17399149936,17399170300} --Anime-Crossover-Defense
 local PlaceId_AD = {17017769292,17018663967,17633071278,17078425946,17456575820,17490500437,17513685680,17620826119} --Anime-Defenders
 
---Anime Fantasy
-if table.find(PlaceId_AF,game.PlaceId) then
-    ScriptLoadHSz = "HSz_AF"
-else
-	ScriptLoadHSz = "HSz_AF"
-end
 
-if table.find(PlaceId_ACS,game.PlaceId) then
-    ScriptLoadHSz = "HSz_ACS"
-elseif table.find(PlaceId_AA,game.PlaceId) then
-    ScriptLoadHSz = "HSz_AA"
-elseif table.find(PlaceId_ADS,game.PlaceId) then
-	ScriptLoadHSz = "HSz_ADS"
+if table.find(PlaceId_AD,game.PlaceId) then
+	ScriptLoadHSz = "HSz_AD"
 elseif table.find(PlaceId_ALS,game.PlaceId) then
 	ScriptLoadHSz = "HSz_ALS"
+elseif table.find(PlaceId_AA,game.PlaceId) then
+    ScriptLoadHSz = "HSz_AA"
+elseif table.find(PlaceId_ACS,game.PlaceId) then
+    ScriptLoadHSz = "HSz_ACS"
+elseif table.find(PlaceId_ADS,game.PlaceId) then
+	ScriptLoadHSz = "HSz_ADS"
 elseif table.find(PlaceId_ADF,game.PlaceId) then
 	ScriptLoadHSz = "HSz_ADF"
 elseif table.find(PlaceId_SB3,game.PlaceId) then
@@ -36,8 +32,12 @@ elseif table.find(PlaceId_CTD,game.PlaceId) then
 	ScriptLoadHSz = "HSz_CTD"
 elseif table.find(PlaceId_ACD,game.PlaceId) then
 	ScriptLoadHSz = "HSz_ACD"
-elseif table.find(PlaceId_AD,game.PlaceId) then
-	ScriptLoadHSz = "HSz_AD"
+end
+
+if table.find(PlaceId_AF,game.PlaceId) then
+	ScriptLoadHSz = "HSz_AF"
+else
+	ScriptLoadHSz = "HSz_AF"
 end
 
 
