@@ -2855,6 +2855,10 @@ function saveposTEST(UnitPos, a,a2,a3,a4,a5,a6)
         and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 419.4320068359375" 
         and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 299.4320068359375") then world = "christmas_map_lane4" end
 
+        if  Mapname == "Holiday Hunt" or map2 == "christmas_map" and (game.workspace._BASES.player.LANES["1"].final.CFrame.Position == "469.6319885253906, 45.859954833984375, 443.4320068359375" 
+        and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 443.4320068359375" 
+        and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 299.4320068359375") then world = "christmas_map_lane5" end
+
 
 
 
@@ -6409,6 +6413,13 @@ function PlacePos(map,name,_uuid,unit)
         and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 419.4320068359375" 
         and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane4" end
 
+        if  Mapname == "Holiday Hunt" or map2 == "christmas_map" and (game.workspace._BASES.player.LANES["1"].final.CFrame.Position == "469.6319885253906, 45.859954833984375, 443.4320068359375" 
+        and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 443.4320068359375" 
+        and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane5" end
+
+
+
+
 
         if map == "jjk_raid" then map = "jjk" end
         if map == "jjk_finger" then map = "jjk" end
@@ -6890,6 +6901,10 @@ function PlaceUnitsTEST(map,name,_uuid,unit)
     and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 419.4320068359375" 
     and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane4" end
 
+    if  Mapname == "Holiday Hunt" or map2 == "christmas_map" and (game.workspace._BASES.player.LANES["1"].final.CFrame.Position == "469.6319885253906, 45.859954833984375, 443.4320068359375" 
+    and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 443.4320068359375" 
+    and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane5" end
+
 
 
     if map == "jjk_raid" then map = "jjk" end
@@ -7123,6 +7138,10 @@ function PlaceUnits(map)
                     and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 419.4320068359375" 
                     and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane4" end
 
+                    if  Mapname == "Holiday Hunt" or map2 == "christmas_map" and (game.workspace._BASES.player.LANES["1"].final.CFrame.Position == "469.6319885253906, 45.859954833984375, 443.4320068359375" 
+                    and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 443.4320068359375" 
+                    and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane5" end
+
 
 
                     if map == "jjk_raid" then map = "jjk" end
@@ -7293,6 +7312,10 @@ coroutine.resume(coroutine.create(function()
                 and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 419.4320068359375" 
                 and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane4" end
 
+                if  Mapname == "Holiday Hunt" or map2 == "christmas_map" and (game.workspace._BASES.player.LANES["1"].final.CFrame.Position == "469.6319885253906, 45.859954833984375, 443.4320068359375" 
+                and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 443.4320068359375" 
+                and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane5" end
+
 
                 if map == "jjk_raid" then map = "jjk" end
                 if map == "jjk_finger" then map = "jjk" end
@@ -7379,6 +7402,10 @@ coroutine.resume(coroutine.create(function()
                 if  Mapname == "Holiday Hunt" or map2 == "christmas_map" and (game.workspace._BASES.player.LANES["1"].final.CFrame.Position == "445.6319885253906, 45.859954833984375, 419.4320068359375" 
                 and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 419.4320068359375" 
                 and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "325.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane4" end
+
+                if  Mapname == "Holiday Hunt" or map2 == "christmas_map" and (game.workspace._BASES.player.LANES["1"].final.CFrame.Position == "469.6319885253906, 45.859954833984375, 443.4320068359375" 
+                and game.workspace._BASES.player.LANES["2"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 443.4320068359375" 
+                and game.workspace._BASES.player.LANES["3"].final.CFrame.Position == "349.6319885253906, 45.859954833984375, 299.4320068359375") then map = "christmas_map_lane5" end
 
 
                 
