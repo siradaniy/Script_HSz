@@ -1,6 +1,3 @@
-_G.DebugScript = true
---_G.ShowUnit = true
-
 if tostring(identifyexecutor()) ~= "Wave" then
     if not isfolder("HolyShz") then makefolder("HolyShz") end
     if not isfile("HolyShz/SaveKey.txt") then 
@@ -313,8 +310,7 @@ if game.PlaceId == 8304191830 then
     repeat task.wait() until game.ReplicatedStorage.packages:FindFirstChild("StarterGui")
 else
     repeat task.wait() until game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name)
-    game:GetService("ReplicatedStorage").endpoints.client_to_server.vote_start:InvokeServer()
-    repeat task.wait() until game:GetService("Workspace")["_waves_started"].Value == true
+    --repeat task.wait() until game:GetService("Workspace")["_waves_started"].Value == true
 end
 
 --Version_UI
@@ -1658,6 +1654,12 @@ local function AutoFarmSec()
         Settings.AutoFarm = bool
         saveSettings()
     end,{enabled = Settings.AutoFarm })
+
+    AutoFarmConfig:Cheat("Checkbox","🏃 Auto Vote Start  ", function(bool)
+        print(bool)
+        Settings.AutoVoteStart = bool
+        saveSettings()
+    end,{enabled = Settings.AutoVoteStart })
 
     AutoFarmConfig:Cheat("Checkbox","🏃 Auto Replay ", function(bool)
         print(bool)
@@ -4999,7 +5001,7 @@ Settings.teleporting = true
 getgenv().door = "_lobbytemplategreen1" or "_lobbytemplategreen2" or "_lobbytemplategreen3" or "_lobbytemplategreen4" or "_lobbytemplategreen5" or "_lobbytemplategreen6" or 
 "_lobbytemplategreen7" or "_lobbytemplategreen8" or "_lobbytemplategreen9" or "_lobbytemplategreen10" or "_lobbytemplategreen11" or "_lobbytemplategreen12"
 local function startfarming()
-    if game.PlaceId == 8304191830 and not Settings.farmprotal and Settings.autostart and Settings.AutoFarm and Settings.teleporting and not Settings.AutoInfinityCastle then
+    if game.PlaceId == 8304191830 and not Settings.farmprotal and Settings.autostart --[[and Settings.AutoFarm]] and Settings.teleporting and not Settings.AutoInfinityCastle then
         local cpos = plr.Character.HumanoidRootPart.CFrame; cata = Settings.WorldCategory; level = Settings.SelectedLevel;
         
         if cata == "Story Worlds" or cata == "Legend Stages" then
@@ -5244,10 +5246,10 @@ local function startfarming()
                 elseif level == "namek_halloween"and not Settings.Matchmaking then
                     getgenv().door = "_lobbytemplate_event4"
 
-                    local string_1 = "_lobbytemplate_event4";
-                    local Target = game:GetService("ReplicatedStorage").endpoints["client_to_server"]["request_join_lobby"];
+                    local string_1 = "halloween2_event";
+                    local Target = game:GetService("ReplicatedStorage").endpoints["client_to_server"]["request_matchmaking"];
                     Target:InvokeServer(string_1);
-                
+                    
                     if tostring(game.Workspace._DUNGEONS.Lobbies[getgenv().door].Owner.Value) ~= plr.Name then
                         for i, v in pairs(game:GetService("Workspace")["_DUNGEONS"].Lobbies:GetDescendants()) do
                             if v.Name == "Owner" and v.Value == nil then
@@ -5300,10 +5302,9 @@ local function startfarming()
                     if level == "christmas_map" and Settings.Matchmaking then
                         getgenv().door = "_lobbytemplate_event3"
 
-                        local string_1 = "_lobbytemplate_event3";
+                        local string_1 = "christmas_event";
                         local Target = game:GetService("ReplicatedStorage").endpoints["client_to_server"]["request_matchmaking"];
                         Target:InvokeServer(string_1);
-
 
                     elseif level == "christmas_map"and not Settings.Matchmaking then
                         getgenv().door = "_lobbytemplate_event3"
@@ -6259,6 +6260,16 @@ end
 
 -------------------------------------------
 -------------------------------------------
+if not workspace._MAP_CONFIG.IsLobby.Value then
+    repeat task.wait()
+        if not workspace._DATA.GameStarted.Value and Settings.AutoVoteStart then
+            game:GetService("ReplicatedStorage").endpoints.client_to_server.vote_start:InvokeServer()
+            wait(.1)
+            game:GetService("ReplicatedStorage").endpoints["client_to_server"]["vote_start"]:InvokeServer();            
+        end
+    until workspace._DATA.GameStarted.Value
+end
+
 coroutine.resume(coroutine.create(function()
     task.spawn(function()
         local GameFinished = game:GetService("Workspace"):WaitForChild("_DATA"):WaitForChild("GameFinished")
