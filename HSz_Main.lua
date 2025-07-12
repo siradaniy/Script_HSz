@@ -1,3 +1,4 @@
+_G.DebugScript = true
 local ScriptLoadHSz = nil
 local PlaceId_ACS = {14433762945,14551143850} --Anime Champions Simulator
 local PlaceId_AA = {8304191830,8349889591,10098525303,14229762361,14229839966,14918509670} --Anime Adventures
